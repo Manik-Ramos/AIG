@@ -1,0 +1,20 @@
+<div class="main" *ngIf="todos.length > 0">
+  <ul class="todo-list">
+    <div *ngFor="let todo of todos" [class.completed]="todo.todoCompleted">    
+      <div *ngIf="!todo.todoCompleted" class="alert alert-danger alert-dismissible">
+        <input type="checkbox" (click)="onToggleTodoComplete(todo)" [checked]="todo.todoCompleted"> {{ todo.title }}
+      </div>
+      
+      <div *ngIf="todo.todoCompleted" class="alert alert-success alert-dismissible">
+        {{ todo.title }}
+        <a class="close" data-dismiss="alert" aria-label="close" (click)="removeTodo(todo)">x</a>
+      </div>
+    </div>
+  </ul>
+</div>
+<div *ngIf="todos.length >= 0">
+  <span class="todo-count">
+    <strong>{{ todos.length - completedCounter }}</strong>
+    {{ todos.length == 1 || todos.length - completedCounter == 1 ? 'item' : 'items'}} left
+  </span>
+</div>
